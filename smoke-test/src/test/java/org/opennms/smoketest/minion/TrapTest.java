@@ -78,6 +78,11 @@ public class TrapTest {
         }
         try {
             final TestEnvironmentBuilder builder = TestEnvironment.builder().all();
+            builder.withOpenNMSEnvironment()
+            .addFile(SyslogTest.class.getResource("/eventconf.xml"), "etc/eventconf.xml")
+            .addFile(SyslogTest.class.getResource("/events/Cisco.syslog.events.xml"), "etc/events/Cisco.syslog.events.xml")
+            .addFile(SyslogTest.class.getResource("/syslogd-configuration.xml"), "etc/syslogd-configuration.xml")
+            .addFile(SyslogTest.class.getResource("/syslog/Cisco.syslog.xml"), "etc/syslog/Cisco.syslog.xml");
             OpenNMSSeleniumTestCase.configureTestEnvironment(builder);
             minionSystem = builder.build();
             return minionSystem;
@@ -111,6 +116,8 @@ public class TrapTest {
             pipe.println("config:update");
             // Install the syslog and trap handler features
             pipe.println("features:install opennms-syslogd-handler-default opennms-trapd-handler-default");
+            pipe.println("features:list -i");
+            pipe.println("list");
             pipe.println("logout");
             try {
                 await().atMost(2, MINUTES).until(sshClient.isShellClosedCallable());
@@ -118,6 +125,8 @@ public class TrapTest {
                 LOG.info("Karaf output:\n{}", sshClient.getStdout());
             }
         }
+
+        Thread.sleep(5000);
 
         // Send a trap to the Minion listener
         final InetSocketAddress trapAddr = minionSystem.getServiceAddress(ContainerAlias.MINION, 162, "udp");
