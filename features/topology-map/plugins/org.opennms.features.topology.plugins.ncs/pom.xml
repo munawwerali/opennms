@@ -18,7 +18,7 @@
     <groupId>org.opennms.features.topology.plugins</groupId>
     <artifactId>ncs</artifactId>
 
-    <name>${bundle.symbolicName}</name>
+    <name>OpenNMS :: Features :: Topology :: Plugins :: NCS</name>
 
     <packaging>bundle</packaging>
 

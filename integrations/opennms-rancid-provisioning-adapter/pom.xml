@@ -7,7 +7,7 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>opennms-rancid-provisioning-adapter</artifactId>
-  <name>OpenNMS Integrations RANCID Provisioning Interface</name>
+  <name>OpenNMS :: Integrations :: Provisioning Adapter :: RANCID</name>
   <dependencies>
     <dependency>
       <groupId>org.opennms</groupId>

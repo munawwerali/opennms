@@ -15,7 +15,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.opennms.features.topology.plugins</groupId>
     <artifactId>browsers</artifactId>
-    <name>${bundle.symbolicName}</name>
+    <name>OpenNMS :: Features :: Topology :: Plugins :: Browsers</name>
     <packaging>bundle</packaging>
     <build>
         <plugins>
