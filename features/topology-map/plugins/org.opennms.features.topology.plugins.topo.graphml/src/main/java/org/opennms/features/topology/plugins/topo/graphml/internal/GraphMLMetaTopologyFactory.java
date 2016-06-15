@@ -43,6 +43,7 @@ import org.opennms.features.topology.plugins.topo.graphml.GraphMLMetaTopologyPro
 import org.opennms.features.topology.plugins.topo.graphml.GraphMLSearchProvider;
 import org.opennms.features.topology.plugins.topo.graphml.GraphMLTopologyProvider;
 import org.opennms.netmgt.dao.api.NodeDao;
+import org.opennms.netmgt.dao.api.SnmpInterfaceDao;
 import org.opennms.netmgt.measurements.api.MeasurementsService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -72,6 +73,7 @@ public class GraphMLMetaTopologyFactory implements ManagedServiceFactory {
 	private Map<String, List<ServiceRegistration<SearchProvider>>> m_searchProviders = Maps.newHashMap();
 	private Map<String, List<ServiceRegistration<EdgeStatusProvider>>> m_edgeStatusProvider = Maps.newHashMap();
 	private NodeDao nodeDao;
+	private SnmpInterfaceDao snmpInterfaceDao;
 	private MeasurementsService measurementsService;
 
 	public void setBundleContext(BundleContext bundleContext) {
@@ -128,6 +130,7 @@ public class GraphMLMetaTopologyFactory implements ManagedServiceFactory {
 																																							  scriptEngineManager,
 																																							  m_transactionOperations,
 																																		                      nodeDao,
+																																		                      snmpInterfaceDao,
 																																		                      measurementsService),
 																																new Hashtable<>());
 				m_edgeStatusProvider.get(pid).add(edgeStatusProviderServiceRegistration);
@@ -148,6 +151,10 @@ public class GraphMLMetaTopologyFactory implements ManagedServiceFactory {
 
 	public void setNodeDao(NodeDao nodeDao) {
 		this.nodeDao = Objects.requireNonNull(nodeDao);
+	}
+
+	public void setSnmpInterfaceDao(SnmpInterfaceDao snmpInterfaceDao) {
+		this.snmpInterfaceDao = Objects.requireNonNull(snmpInterfaceDao);
 	}
 
 	public void setMeasurementsService(MeasurementsService measurementsService) {
