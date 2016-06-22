@@ -625,7 +625,7 @@ public class TopologyIT extends OpenNMSSeleniumTestCase {
     public static void waitForTransition() {
         try {
             // TODO: Find a better way that does not require an explicit sleep
-            Thread.sleep(3000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             throw Throwables.propagate(e);
         }
